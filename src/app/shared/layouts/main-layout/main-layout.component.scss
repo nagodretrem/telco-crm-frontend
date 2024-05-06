@@ -1,0 +1,15 @@
+.etiya-content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.etiya-navbar{
+    flex: 7%;
+    padding: 10px;
+}
+
+.etiya-main-content{
+  flex: 90%;
+  padding: 10px;
+}

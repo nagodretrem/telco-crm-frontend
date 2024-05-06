@@ -1,0 +1,28 @@
+<form [formGroup]="form" (submit)="onFormSubmit()" >
+
+  <label for="username">Username: </label>
+  <br />
+  <input id="username" type="text" formControlName="username" />
+  <div  *ngIf="form.controls['username'].invalid && (form.controls['username'].dirty || form.controls['username'].touched)"
+>
+  <div class="error-message" *ngIf="form.controls['username'].errors">
+    Username is required.
+  </div>
+</div>
+<br />
+
+<label for="password">Password: </label>
+<br />
+<input id="password" type="password" formControlName="password" />
+<div *ngIf="form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)"
+>
+  <div class="error-message" *ngIf="form.controls['password'].errors" >
+    Password is required.
+  </div>
+</div>
+<br />
+<br />
+  <button  pButton type="submit" label="Login" [disabled]="!form.valid"></button>
+</form>
+
+

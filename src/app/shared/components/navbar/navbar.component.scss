@@ -1,0 +1,40 @@
+.etiya-navbar{
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  @media (max-width: 1000px) {
+    flex-direction: row;
+    margin-top: -20px;
+
+    .menu-icon, .right-hand-icon{
+      display: none;
+    }
+    .logo-div{
+      margin-right: 10px;
+      height: 75px;
+    }
+
+  }
+
+}
+
+.logo-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 30px;
+  background-color: #F5831F;
+  width: 75px;
+  height: 100px;
+}
+
+.logo-text{
+  font-size: 20px;
+  font-weight: bold;
+}

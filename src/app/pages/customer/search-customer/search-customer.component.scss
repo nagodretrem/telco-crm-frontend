@@ -1,0 +1,14 @@
+.etiya-search{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.etiya-search-filter{
+  padding-right: 20px;
+  flex: 20%
+}
+
+.etiya-search-result{
+  flex: 80%
+}

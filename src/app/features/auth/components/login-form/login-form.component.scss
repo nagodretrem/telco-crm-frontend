@@ -1,0 +1,28 @@
+form {
+  margin-top: 30px; /* Formun üstündeki elementten uzaklaştırır */
+  max-width: 600px; /* Formun maksimum genişliğini ayarlar */
+  width: 100%; /* Formun genişliğini ekranın genişliğine göre ayarlar */
+
+  .error-message{
+    position: relative; /* Hata mesajını formun içinde konumlandırır */
+    top: -15px; /* Hata mesajını yukarı doğru kaydırır */
+    font-size: 13px; /* Hata mesajı yazı boyutunu küçültür */
+    color: red; /* Hata mesajı rengini kırmızı yapar */
+  }
+
+}
+
+input {
+  width: 300px; /* Input genişliğini formun padding'inden dolayı ayarlar */
+  padding: 8px; /* Input içine boşluk ekler */
+  margin-bottom: 20px; /* Input altına boşluk ekler */
+  border-radius: 3px; /* Input kenarlarını yuvarlar */
+
+}
+
+button.p-button {
+  display: block;  /* Butonu blok element yapar */
+  margin: auto; /* Butonu formun ortasına alır ama alabilmesi için display blok olmalı */
+  width: 30%; /* Butonun genişliğini artırır */
+  font-size: 18px; /* Buton yazı boyutunu büyütür */
+}

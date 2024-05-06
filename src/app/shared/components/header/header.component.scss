@@ -1,0 +1,26 @@
+.etiya-header{
+  width: 100%;
+  height: 60px;
+  background: #242441;
+  display: flex; /* Flex container olarak ayarla */
+}
+
+.image-divs{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.left-group, .right-group {
+  display: flex;
+  align-items: center;
+}
+
+.left-group {
+  justify-content: flex-start; /* Sol gruptaki öğeleri sola yasla */
+}
+
+.right-group {
+  justify-content: flex-end; /* Sağ gruptaki öğeleri sağa yasla */
+}

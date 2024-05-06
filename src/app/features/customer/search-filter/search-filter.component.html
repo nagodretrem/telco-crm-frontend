@@ -1,0 +1,35 @@
+<form [formGroup]="searchForm" (submit)="onSearch()">
+  <div>
+    <label for="idNumber">ID Number</label>
+    <input type="text" id="idNumber" formControlName="idNumber">
+  </div>
+  <div>
+    <label for="customerId">Customer ID</label>
+    <input type="text" id="customerId" formControlName="customerId">
+  </div>
+  <div>
+    <label for="accountNumber">Account Number</label>
+    <input type="text" id="accountNumber" formControlName="accountNumber">
+  </div>
+  <div>
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" formControlName="firstName">
+  </div>
+  <div>
+    <label for="secondName">Second Name</label>
+    <input type="text" id="secondName" formControlName="secondName">
+  </div>
+  <div>
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" formControlName="lastName">
+  </div>
+  <div>
+    <label for="orderNumber">Order Number</label>
+    <input type="text" id="orderNumber" formControlName="orderNumber">
+  </div>
+  <div class="button-div">
+    <button type="button" (click)="onClear()">Clear</button>
+    <button type="submit">Search</button>
+  </div>
+
+</form>

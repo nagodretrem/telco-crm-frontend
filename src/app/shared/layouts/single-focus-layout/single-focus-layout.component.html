@@ -1,0 +1,14 @@
+<div class="etiya-container">
+  <div class="half-left">
+    <img src="assets/images/etiya-logo.png" alt="Etiya Logo" />
+  </div>
+  <div class="half-right">
+    @if(headerTemplate){
+      <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+    }
+
+    <main>
+      <ng-content></ng-content>
+    </main>
+  </div>
+</div>
