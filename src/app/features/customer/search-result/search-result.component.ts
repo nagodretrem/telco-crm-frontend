@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
+import { CustomersApiService } from '../services/customersApi.service';
 
 
 @Component({
@@ -16,6 +17,11 @@ import { TableModule } from 'primeng/table';
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SearchResultComponent {
+
+  constructor(private customerSerivce : CustomersApiService){
+    console.log(customerSerivce.getListWihtPagination(0,10));
+  }
+
 
    customers = [        {
     "id": 1000,
@@ -198,9 +204,8 @@ export class SearchResultComponent {
     "balance": 63451
   }
 
-  ];
 
-
+   ]
 
 
 
