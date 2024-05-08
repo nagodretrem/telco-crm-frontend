@@ -1,0 +1,76 @@
+.address-info{
+    border: 2px solid #242441; /* Örnek olarak koyu gri bir border */
+    padding: 30px; /* İçerik ile border arasında boşluk */
+    margin: 20px; /* Formun dışındaki elementler ile arasında boşluk */
+    position: relative; /* h4 pozisyonlandırması için referans */
+    background-color: #fff; /* Formun arka plan rengi */
+
+  .title {
+    position: absolute;
+    top: -32px; /* h4'ü formun dışına taşı */
+    left: 20%;
+    transform: translateX(-50%); /* h4'ü tam ortaya al */
+    background-color: #fff; /* h4'ün arka planını formun arka planıyla aynı yap */
+    padding: 0 10px; /* Metnin etrafında boşluk */
+  }
+  .next-button{
+    position: flex;
+    align-items: flex-end;
+    float: right;
+    margin-right: 20px;
+    left: 4%;
+    width: 80px;
+    background-color: #242441;
+    color: #F5831F;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 80px;
+    margin-bottom: 5px;
+    }
+  .previous-button{
+    position: flex;
+    align-items: flex-end;
+    margin-left: 20px;
+    right: 5%;
+    width: 80px;
+    background-color: #242441;
+    color: #F5831F;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 80px;
+    margin-bottom: 5px;
+  }    
+
+
+}
+  .add-new-address{   
+    background-color: #242441; 
+    border: 1px;
+    margin: 20px;
+    margin-top: 50px;
+    padding: 20px;
+    height: 40vh;
+    min-height: 30vh;
+    min-width: 8vw;
+    width: 15vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .add-button{
+        position: flex;
+        justify-self: center;   
+        background-color: #F5831F;
+        color: black;
+        font-size: medium;
+        font-weight: bold;       
+        height: 40%;
+        width: 14vw;
+        border: none;
+        cursor: pointer;
+    }
+} 
+

@@ -6,6 +6,8 @@ import { CreateCustomerComponent } from './pages/customer/create-customer/create
 import { DemographicInfoComponent } from './features/customer/demographic-info/demographic-info.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { AddressInfoComponent } from './features/customer/address-info/address-info.component';
+import { AddressAddComponent } from './features/customer/add-address/address-add.component';
+
 
 export const routes: Routes = [
 
@@ -56,11 +58,30 @@ export const routes: Routes = [
           path: '',
           pathMatch: 'full',
           component: AddressInfoComponent,
-        }
+          },
       ]
       },
     ],
   },
+  {
+    path: 'create/add-address',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: CreateCustomerComponent,
+        children:[
+          {
+          path: '',
+          pathMatch: 'full',
+          component: AddressAddComponent,
+          },
+      ]
+      },
+    ],
+  },
+
   {
     path: 'login',
     component: LoginPageComponent,

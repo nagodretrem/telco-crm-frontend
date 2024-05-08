@@ -1,0 +1,35 @@
+<form class="form" [formGroup]="form">
+  <h4 class="title">Add Address</h4>
+    <div class="etiya-add-address">
+      <div class="left-side">
+        <div class="inputs">
+          <label>City*</label>
+          <select class="form-select" formControlName="city">
+            <option hidden></option>
+            <option value="1">Ankara</option> <!--bu seçenekleri dbden çekicez-->
+            <option value="2">Istanbul</option>
+          </select>
+        </div>
+        <div class="inputs">
+          <label>House / Flat Number*</label>
+          <input type="text" formControlName="houseFlatNumber"/>
+        </div>
+        <div class="inputs">
+          <label>Address Description*</label>
+          <input type="text" formControlName="addressDescription" />
+        </div>
+      </div>
+  
+      <div class="right-side">
+        <div class="inputs">
+          <label>Street</label>
+          <input type="text" formControlName="street" />
+        </div>
+      </div>
+    </div>
+    <button class="cancel-button">Cancel</button>
+    <button class="save-button">Save</button>
+  
+  </form>
+  
+  

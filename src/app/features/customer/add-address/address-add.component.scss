@@ -1,0 +1,100 @@
+.etiya-add-address{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  
+    @media (max-width: 1000px) {
+      flex-direction: column;
+      .left-side, .right-side{
+        margin: 0;  
+      }
+    }
+  }
+
+.form {
+    border: 2px solid #242441; /* Örnek olarak koyu gri bir border */
+    padding: 30px; /* İçerik ile border arasında boşluk */
+    margin: 20px; /* Formun dışındaki elementler ile arasında boşluk */
+    position: relative; /* h4 pozisyonlandırması için referans */
+    background-color: #fff; /* Formun arka plan rengi */
+
+  .cancel-button{
+    position: flex;
+    align-items: flex-end;
+    margin-left: 20px;
+    right: 5%;
+    width: 80px;
+    background-color: #242441;
+    color: #F5831F;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 60px;
+    margin-bottom: 5px;
+  }
+
+  .save-button{
+    position: flex;
+    align-items: flex-end;
+    float: right;
+    margin-right: 20px;
+    left: 4%;
+    width: 80px;
+    background-color: #242441;
+    color: #F5831F;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 60px;
+    margin-bottom: 5px;
+  }
+}
+
+.title {
+  position: absolute;
+  top: -32px; /* h4'ü formun dışına taşı */
+  left: 20%;
+  transform: translateX(-50%); /* h4'ü tam ortaya al */
+  background-color: #fff; /* h4'ün arka planını formun arka planıyla aynı yap */
+  padding: 0 10px; /* Metnin etrafında boşluk */
+}
+
+.left-side, .right-side{
+  margin-top: 50px;
+  width: 350px;
+  flex-direction: column;
+}
+.left-side{
+  display: flex;
+  margin-left: 10px;
+
+
+}
+.right-side{
+  display: flex;
+  margin-right: 10px;
+}
+
+label {
+    color: #F5831F;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  input, .form-select{
+    margin-bottom: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #6a6767;
+    width: 100%;
+  }
+  .inputs input[type="text"][formControlName="addressDescription"] {
+    width: 50vw;
+    height: 20vh;
+    min-width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+
+  }
