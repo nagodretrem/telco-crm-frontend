@@ -1,0 +1,50 @@
+<form class="form" [formGroup]="form" (submit)="onSubmitForm()">
+  <h4 class="title">Demographic Info</h4>
+  <div class="etiya-demographic">
+    <div class="left-side">
+      <div class="inputs">
+        <label>First Name*</label>
+        <input type="text" formControlName="firstName" />
+      </div>
+      <div class="inputs">
+        <label>Last Name*</label>
+        <input type="text" formControlName="lastName" />
+      </div>
+      <div class="inputs">
+        <label>Gender*</label>
+        <select class="form-select" formControlName="gender">
+          <option hidden></option>
+          <option value="1">Male</option>
+          <option value="2">Female</option>
+        </select>
+      </div>
+      <div class="inputs">
+        <label>Mother Name*</label>
+        <input type="text" formControlName="motherName" />
+      </div>
+    </div>
+
+    <div class="right-side">
+      <div class="inputs">
+        <label>Middle Name</label>
+        <input type="text" formControlName="middleName" />
+      </div>
+      <div class="inputs">
+        <label>Birth Date*</label>
+        <input type="date" formControlName="birthDate" />
+      </div>
+      <div class="inputs">
+        <label>Father Name</label>
+        <input type="text" formControlName="fatherName" />
+      </div>
+      <div class="inputs">
+        <label>Nationality ID</label>
+        <input type="text" formControlName="nationalityId" />
+      </div>
+    </div>
+  </div>
+  <button class="cancel-button" (click)="cancelButtonClicked()">Cancel</button>
+  <button class="next-button"  type="submit" [disabled]="!form.valid">Next</button>
+
+</form>
+

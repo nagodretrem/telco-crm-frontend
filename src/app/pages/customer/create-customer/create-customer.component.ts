@@ -3,14 +3,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'etiya-navbar',
+  selector: 'etiya-create-customer',
   standalone: true,
   imports: [
     CommonModule,
     RouterModule
   ],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss',
+  templateUrl: './create-customer.component.html',
+  styleUrl: './create-customer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent { }
+export class CreateCustomerComponent { }

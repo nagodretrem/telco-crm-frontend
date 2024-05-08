@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { CustomersApiService } from '../services/customersApi.service';
 
@@ -16,10 +16,19 @@ import { CustomersApiService } from '../services/customersApi.service';
   styleUrl: './search-result.component.scss',
   changeDetection: ChangeDetectionStrategy.Default,
 })
-export class SearchResultComponent {
+export class SearchResultComponent implements OnInit{
+
+
 
   constructor(private customerSerivce : CustomersApiService){
-    console.log(customerSerivce.getListWihtPagination(0,10));
+
+  }
+
+
+  ngOnInit(){
+    this.customerSerivce.getListWihtPagination(0,10).subscribe(data => {
+      console.log(data);
+    });
   }
 
 

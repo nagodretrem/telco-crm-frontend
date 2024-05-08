@@ -1,0 +1,15 @@
+.create-customer{
+  border: 2px solid #242441; /* Örnek olarak koyu gri bir border */
+  padding: 10px; /* İçerik ile border arasında boşluk */
+  margin-top: 20px;
+  position: relative; /* h4 pozisyonlandırması için referans */
+  background-color: #fff; /* Formun arka plan rengi */
+}
+.title {
+  position: absolute;
+  top: -32px; /* h4'ü formun dışına taşı */
+  left: 20%;
+  transform: translateX(-50%); /* h4'ü tam ortaya al */
+  background-color: #fff; /* h4'ün arka planını formun arka planıyla aynı yap */
+  padding: 0 10px; /* Metnin etrafında boşluk */
+}
