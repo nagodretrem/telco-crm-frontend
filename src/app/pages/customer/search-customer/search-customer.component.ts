@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SearchFilterComponent } from '../../../features/customer/search-filter/search-filter.component';
-import { SearchResultComponent } from '../../../features/customer/search-result/search-result.component';
+import { SearchFilterComponent } from '../../../features/customer/components/search-filter/search-filter.component';
+import { SearchResultComponent } from '../../../features/customer/components/search-result/search-result.component';
 
 @Component({
   selector: 'etiya-search-customer',

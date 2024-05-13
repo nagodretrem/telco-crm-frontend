@@ -1,0 +1,49 @@
+@if (customers && customers.content && customers.content.length > 0) {
+<div class="border">
+  <h4 class="title">Search Result</h4>
+  <div class="card">
+    <p-table
+      [value]="customers.content"
+      [paginator]="true"
+      [rows]="10"
+      [tableStyle]="{ 'min-width': '2rem' }"
+      [rowsPerPageOptions]="[1, 3, 5, 10]"
+      [totalRecords]="customers.totalElements"
+
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 10%">ID Number</th>
+          <th style="width: 10%">First Name</th>
+          <th style="width: 10%">Last Name</th>
+          <th style="width: 10%">Customer ID</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-customer>
+        <tr>
+          <td>{{ customer.nationalityId }}</td>
+          <td>{{ customer.firstName }}</td>
+          <td>{{ customer.lastName }}</td>
+          <td>{{ customer.customerId }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+}
+
+@else if (customers === undefined) { }
+
+
+@else () {
+<div class="create-customer-section">
+  <p>
+    No customer found! <br />
+    Would you like to create customer?
+  </p>
+  <button type="button" (click)="navigateToCreateCustomer()">
+    Create Customer
+  </button>
+</div>
+
+}

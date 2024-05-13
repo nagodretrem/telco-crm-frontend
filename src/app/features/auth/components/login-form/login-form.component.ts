@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -32,7 +33,8 @@ export class LoginFormComponent {
     ],
   });
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   onFormSubmit() {
@@ -40,7 +42,7 @@ export class LoginFormComponent {
       console.error('Form is invalid');
       return;
     }
-
+    this.router.navigate(['/search']);
     this.submit();
   }
 

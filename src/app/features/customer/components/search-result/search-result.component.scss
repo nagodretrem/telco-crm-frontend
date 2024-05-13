@@ -1,0 +1,44 @@
+.border{
+  border: 2px solid #242441; /* Örnek olarak koyu gri bir border */
+  padding: 15px; /* İçerik ile border arasında boşluk */
+  padding-right: 20px;
+  position: relative; /* h4 pozisyonlandırması için referans */
+  background-color: #fff; /* Formun arka plan rengi */
+
+  .title {
+    position: absolute;
+    top: -32px; /* h4'ü formun dışına taşı */
+    left: 20%;
+    transform: translateX(-50%); /* h4'ü tam ortaya al */
+    background-color: #fff; /* h4'ün arka planını formun arka planıyla aynı yap */
+    padding: 0 10px; /* Metnin etrafında boşluk */
+  }
+
+
+}
+
+
+
+.create-customer-section{
+  margin-top: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p{
+    margin: 30px;
+  }
+  button{
+    background-color: #D9D9D9;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 4px 2px;
+    cursor: pointer;
+    padding: 10px 24px;
+  }
+}

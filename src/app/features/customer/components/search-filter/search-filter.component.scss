@@ -1,8 +1,29 @@
+.border{
+  border: 2px solid #242441; /* Örnek olarak koyu gri bir border */
+  padding: 15px; /* İçerik ile border arasında boşluk */
+  padding-right: 20px;
+  position: relative; /* h4 pozisyonlandırması için referans */
+  background-color: #fff; /* Formun arka plan rengi */
+
+  .title {
+    position: absolute;
+    top: -32px; /* h4'ü formun dışına taşı */
+    left: 40%;
+    transform: translateX(-50%); /* h4'ü tam ortaya al */
+    background-color: #fff; /* h4'ün arka planını formun arka planıyla aynı yap */
+    padding: 0 10px; /* Metnin etrafında boşluk */
+  }
+
+
+}
+
+
 form {
-  margin-top: 30px;
+  margin-right: 10px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+
 
   @media (max-width: 1000px) {
     margin-right: 20px;
@@ -24,6 +45,7 @@ label {
   font-size: 14px;
 }
 input{
+
   margin-left:10px;
   margin-bottom: 20px;
   padding: 10px;
@@ -52,4 +74,8 @@ button{
   cursor: pointer;
 }
 
+button:disabled {
+  background-color: grey;
+  color: white;
+}
 

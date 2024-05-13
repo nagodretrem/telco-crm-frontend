@@ -3,10 +3,10 @@ import { LoginPageComponent } from './pages/auth/login-page/login-page.component
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { SearchCustomerComponent } from './pages/customer/search-customer/search-customer.component';
 import { CreateCustomerComponent } from './pages/customer/create-customer/create-customer.component';
-import { DemographicInfoComponent } from './features/customer/demographic-info/demographic-info.component';
+import { DemographicInfoComponent } from './features/customer/components/demographic-info/demographic-info.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
-import { AddressInfoComponent } from './features/customer/address-info/address-info.component';
-import { AddressAddComponent } from './features/customer/add-address/address-add.component';
+import { AddressInfoComponent } from './features/customer/components/address-info/address-info.component';
+import { AddressAddComponent } from './features/customer/components/add-address/address-add.component';
 
 
 export const routes: Routes = [

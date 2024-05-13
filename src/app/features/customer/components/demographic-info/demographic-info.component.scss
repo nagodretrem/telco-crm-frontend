@@ -55,6 +55,24 @@
 
     margin-top: 20px;
   }
+
+  button{
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 40%;
+    background-color: #242441;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    background-color: grey;
+    color: white;
+  }
 }
 
 .title {
@@ -88,7 +106,17 @@
 
 
 
+form {
 
+  .error-message{
+    position: relative; /* Hata mesajını formun içinde konumlandırır */
+    top: -15px; /* Hata mesajını yukarı doğru kaydırır */
+    font-size: 13px; /* Hata mesajı yazı boyutunu küçültür */
+    font-weight: bold;
+    color: red; /* Hata mesajı rengini kırmızı yapar */
+  }
+
+}
 
 
 

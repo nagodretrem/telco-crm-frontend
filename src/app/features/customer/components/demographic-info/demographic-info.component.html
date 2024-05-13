@@ -1,0 +1,92 @@
+<form class="form" [formGroup]="form" (submit)="onFormSubmit()">
+  <h4 class="title">Demographic Info</h4>
+  <div class="etiya-demographic">
+    <div class="left-side">
+      <div class="inputs">
+        <label>First Name*</label>
+        <input type="text" formControlName="firstName" OnlyLetter/>
+        <div  *ngIf="form.controls['firstName'].invalid && (form.controls['firstName'].dirty || form.controls['firstName'].touched)"
+        >
+          <div class="error-message" *ngIf="form.controls['firstName'].errors">
+            First Name is required.
+          </div>
+        </div>
+      </div>
+      <div class="inputs">
+        <label>Last Name*</label>
+        <input type="text" formControlName="lastName" OnlyLetter/>
+        <div  *ngIf="form.controls['lastName'].invalid && (form.controls['lastName'].dirty || form.controls['lastName'].touched)"
+        >
+          <div class="error-message" *ngIf="form.controls['lastName'].errors">
+            Last Name is required.
+          </div>
+        </div>
+      </div>
+      <div class="inputs">
+        <label>Gender*</label>
+        <select class="form-select" formControlName="gender">
+          <option hidden></option>
+          <option value="1">Male</option>
+          <option value="2">Female</option>
+        </select>
+        <div  *ngIf="form.controls['gender'].invalid && (form.controls['gender'].dirty || form.controls['gender'].touched)"
+        >
+          <div class="error-message" *ngIf="form.controls['gender'].errors">
+            Field is required.
+          </div>
+        </div>
+      </div>
+      <div class="inputs">
+        <label>Mother Name*</label>
+        <input type="text" formControlName="motherName" OnlyLetter/>
+        <div  *ngIf="form.controls['motherName'].invalid && (form.controls['motherName'].dirty || form.controls['motherName'].touched)"
+        >
+          <div class="error-message" *ngIf="form.controls['motherName'].errors">
+            Field is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-side">
+      <div class="inputs">
+        <label>Middle Name</label>
+        <input type="text" formControlName="middleName" OnlyLetter/>
+      </div>
+      <div class="inputs">
+        <label>Birth Date*</label>
+        <input type="date" formControlName="birthDate" />
+        <div  *ngIf="form.controls['birthDate'].invalid && (form.controls['birthDate'].dirty || form.controls['birthDate'].touched)"
+        >
+          <div class="error-message" *ngIf="form.controls['birthDate'].errors">
+            Field is required.
+          </div>
+        </div>
+      </div>
+      <div class="inputs">
+        <label>Father Name</label>
+        <input type="text" formControlName="fatherName" OnlyLetter/>
+        <div  *ngIf="form.controls['fatherName'].invalid && (form.controls['fatherName'].dirty || form.controls['fatherName'].touched)"
+        >
+          <div class="error-message" *ngIf="form.controls['fatherName'].errors">
+            Father Name is required.
+          </div>
+        </div>
+      </div>
+      <div class="inputs">
+        <label>Nationality ID</label>
+        <input type="text" formControlName="nationalityId" OnlyNumber />
+        <div  *ngIf="form.controls['nationalityId'].invalid && (form.controls['nationalityId'].dirty || form.controls['nationalityId'].touched)"
+        >
+          <div class="error-message" *ngIf="form.controls['nationalityId'].errors">
+            Nationality ID is required.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="cancel-button" (click)="cancelButtonClicked()">Cancel</button>
+  <button class="next-button"  type="submit" [disabled]="!form.valid">Next</button>
+
+</form>
+
