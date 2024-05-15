@@ -5,16 +5,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
 import { RippleModule } from 'primeng/ripple';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors} from '@angular/common/http';
 import { provideState, provideStore } from '@ngrx/store';
 import { individualCustomerReducer } from './shared/store/customers/indivudual-customer.reducer';
 import { contactMediumReducer } from './shared/store/contact-medium/contact-medium.reducer';
 import { individualCustomerAddressReducer } from './shared/store/addresses/customer-address.reducer';
+import {errorInterceptor} from "./core/interceptors/error.interceptor";
+import {authInterceptor} from "./core/interceptors/auth.interceptor";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([errorInterceptor, authInterceptor])),
     provideBrowserAnimations(),
     provideStore(),
     provideState({
