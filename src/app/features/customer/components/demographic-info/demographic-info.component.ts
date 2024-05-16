@@ -91,7 +91,12 @@ export class DemographicInfoComponent implements OnInit {
       birthDate: this.form.value.birthDate,
       nationalityId: this.form.value.nationalityId,
     };
-    this.customerApiService.postCustomer(individualCustomer).subscribe({
+
+    console.log(individualCustomer);
+
+     /*
+
+     this.customerApiService.postCustomer(individualCustomer).subscribe({
       next: data => {
         console.log('Success!', data);
       },
@@ -100,9 +105,10 @@ export class DemographicInfoComponent implements OnInit {
       }
     });
 
+ */
 
     this.store.dispatch(setIndividualCustomer({ individualCustomer }));
-    //this.router.navigate(['/create/address-info']);
+    this.router.navigate(['/create/address-info']);
   }
 
   onFormSubmit() {
@@ -118,3 +124,4 @@ export class DemographicInfoComponent implements OnInit {
 
 
  }
+

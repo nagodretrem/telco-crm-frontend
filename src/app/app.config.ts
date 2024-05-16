@@ -5,13 +5,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
 import { RippleModule } from 'primeng/ripple';
-import { provideHttpClient, withInterceptors} from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideState, provideStore } from '@ngrx/store';
 import { individualCustomerReducer } from './shared/store/customers/indivudual-customer.reducer';
 import { contactMediumReducer } from './shared/store/contact-medium/contact-medium.reducer';
-import { individualCustomerAddressReducer } from './shared/store/addresses/customer-address.reducer';
-import {errorInterceptor} from "./core/interceptors/error.interceptor";
-import {authInterceptor} from "./core/interceptors/auth.interceptor";
+import { errorInterceptor } from "./core/interceptors/error.interceptor";
+import { authInterceptor } from "./core/interceptors/auth.interceptor";
+import { customerAddressReducer } from './shared/store/addresses/customer-address.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,8 +28,8 @@ export const appConfig: ApplicationConfig = {
       reducer: contactMediumReducer
     }),
     provideState({
-      name: 'address',
-      reducer: individualCustomerAddressReducer
+      name: 'customerAddress',
+      reducer: customerAddressReducer
     })
 ]
 };

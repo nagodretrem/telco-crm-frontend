@@ -1,9 +1,13 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { IndividualCustomerAddressState } from "./customer-address.state";
+import { CustomerAddressState } from "./customer-address.state";
 
-const selectIndividualCustomerAddressState=createFeatureSelector<IndividualCustomerAddressState>('individualCustomerAddress')
 
-export const selectIndividualCustomerAddress=createSelector(
-    selectIndividualCustomerAddressState,
-    (state:IndividualCustomerAddressState)=>state.individualCustomerAddress
-)
+
+const selectCustomerAddressState =
+  createFeatureSelector<CustomerAddressState>('customerAddress');
+
+
+  export const selectCustomerAddress = createSelector(
+  selectCustomerAddressState,
+  (state: CustomerAddressState) => ({customerAddress: state.customerAddress, customerAddresses: state.customerAddresses})
+);

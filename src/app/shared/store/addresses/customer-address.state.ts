@@ -1,15 +1,17 @@
 import { CreateAddressRequest } from "../../../features/customer/models/requests/create-address-request";
 
-export interface IndividualCustomerAddressState {
-    individualCustomerAddress:CreateAddressRequest;
+export interface CustomerAddressState {
+  customerAddress: CreateAddressRequest;
+  customerAddresses: CreateAddressRequest[];
 }
 
-export const initialIndividualCustomerAddressState:IndividualCustomerAddressState = {
-    individualCustomerAddress:{
-        customerId:null,
-        cityId: '',
-        houseFlatNumber: '',
-        street: '',
-        addressDescription: ''
-    }
-}
+export const initialCustomerAddressState: CustomerAddressState = {
+  customerAddress: {
+    customerId : '',
+    cityId: '',
+    houseFlatNumber: '',
+    street: '',
+    addressDescription: ''
+  },
+  customerAddresses: []
+};

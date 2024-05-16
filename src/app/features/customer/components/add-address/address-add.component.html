@@ -1,10 +1,10 @@
-<form class="form" [formGroup]="form">
+<form class="form" [formGroup]="form" (submit)="onFormSubmit()">
   <h4 class="title">Add Address</h4>
     <div class="etiya-add-address">
       <div class="left-side">
         <div class="inputs">
           <label>City*</label>
-          <select class="form-select" formControlName="city">
+          <select class="form-select" formControlName="cityId">
             <option hidden></option>
             <option value="1">Ankara</option> <!--bu seçenekleri dbden çekicez-->
             <option value="2">Istanbul</option>
@@ -19,7 +19,7 @@
           <input type="text" formControlName="addressDescription" />
         </div>
       </div>
-  
+
       <div class="right-side">
         <div class="inputs">
           <label>Street</label>
@@ -27,9 +27,8 @@
         </div>
       </div>
     </div>
-    <button class="cancel-button">Cancel</button>
-    <button class="save-button">Save</button>
-  
+    <button type="button" (click)="close()" class="cancel-button">Cancel</button>
+    <button type="submit" class="save-button">Save</button>
+
   </form>
-  
-  
+

@@ -1,10 +1,14 @@
-<div class="address-info">    
-    <h4 class="title">Address Info</h4>
-    <div class="add-new-address">
-        <button class="add-button">Add New Address</button>
-    </div>
-    
-    <button class="previous-button">Previous</button>
-    <button class="next-button">Next</button>
-    
+<div class="address-info">
+  <h4 class="title">Address Info</h4>
+  <div class="add-new-address">
+      <button class="add-button" (click)="display=true">Add New Address</button>
+  </div>
+  <p-dialog header="Add Address" [(visible)]="display" [modal]="true" [style]="{width: '90vw'}" [baseZIndex]="10000">
+      <etiya-address-add (onClose)="onClose($event)"></etiya-address-add>
+  </p-dialog>
+
+
+  <button class="previous-button">Previous</button>
+  <button class="next-button">Next</button>
+
 </div>

@@ -17,6 +17,7 @@ import { ButtonModule } from 'primeng/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent {
+  showPassword: boolean = false;
 
   form: FormGroup = this.fb.group({
     // Form Controls
@@ -29,7 +30,7 @@ export class LoginFormComponent {
     ],
     password: [
       '', // [0] : Başlangıç değeri
-      [Validators.required], // [1] : Validasyonlar
+      [Validators.required, Validators.minLength(6)], // [1] : Validasyonlar
     ],
   });
   constructor(
@@ -48,5 +49,9 @@ export class LoginFormComponent {
 
   submit(){
     console.log("submitted form:" + this.form.value);
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
  }

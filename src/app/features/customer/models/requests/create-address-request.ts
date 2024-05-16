@@ -1,7 +1,8 @@
 export interface CreateAddressRequest {
-  customerId: number;
+  customerId: string;
   cityId: string;
   houseFlatNumber: string;
   street: string;
   addressDescription: string;
 }
+

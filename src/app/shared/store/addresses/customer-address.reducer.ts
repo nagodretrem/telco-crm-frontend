@@ -1,15 +1,19 @@
 import { createReducer, on } from "@ngrx/store";
-import { setIndividualCustomerAddress } from "./customer-address.action";
-import { initialIndividualCustomerAddressState} from "./customer-address.state";
+import { initialCustomerAddressState } from "./customer-address.state";
+import { setCustomerAddress, setCustomerAddresses } from "./customer-address.action";
 
 
 
-export const individualCustomerAddressReducer = createReducer(
-    initialIndividualCustomerAddressState,
-    on(setIndividualCustomerAddress, (state, { individualCustomerAddress }) => ({
-      ...state,
-      individualCustomerAddress: {
-        ...individualCustomerAddress,
-      },
-    }))
-  );
+export const customerAddressReducer = createReducer(
+  initialCustomerAddressState,
+  on(setCustomerAddress, (state, { customerAddress }) => ({
+    ...state,
+    customerAddress: {
+      ...customerAddress,
+    },
+  })),
+  on(setCustomerAddresses, (state, {customerAddresses}) => ({
+    ...state,
+    customerAddresses: [...customerAddresses],
+  }))
+);
