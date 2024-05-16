@@ -1,0 +1,134 @@
+.etiya-customer-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  
+    @media (max-width: 1000px) {
+      flex-direction: column;
+      .left-side, .right-side{
+        margin: 0;
+      }
+    }
+  }
+  
+  
+  
+  .form {
+  
+    padding: 30px; /* İçerik ile border arasında boşluk */
+    padding-bottom: 100px;
+    margin: 20px; /* Formun dışındaki elementler ile arasında boşluk */
+    position: relative; /* h4 pozisyonlandırması için referans */
+    background-color: #fff; /* Formun arka plan rengi */
+  
+    .cancel-button{
+      position: absolute;
+      margin: auto;
+      left: 15%;
+  
+  
+      width: 80px;
+      background-color: #242441;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  
+    .save-button{
+      position: absolute;
+      margin: auto;
+      right: 15%;
+  
+      width: 80px;
+      background-color: #242441;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+  
+      margin-top: 20px;
+    }
+  
+    button{
+      margin-left: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 40%;
+      background-color: #242441;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  
+    button:disabled {
+      background-color: grey;
+      color: white;
+    }
+  }
+  
+  .title {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    font-weight: bolder;
+    border-bottom: solid 1px black;
+  }
+  
+  .left-side, .right-side{
+    margin-top: 50px;
+    width: 350px;
+    flex-direction: column;
+  }
+  .left-side{
+    display: flex;
+    margin-left: 10px;
+  
+  
+  }
+  .right-side{
+    display: flex;
+    margin-right: 10px;
+  
+  
+  }
+  
+  
+  
+  
+  
+  form {
+  
+    .error-message{
+      position: relative; /* Hata mesajını formun içinde konumlandırır */
+      top: -15px; /* Hata mesajını yukarı doğru kaydırır */
+      font-size: 13px; /* Hata mesajı yazı boyutunu küçültür */
+      font-weight: bold;
+      color: red; /* Hata mesajı rengini kırmızı yapar */
+    }
+  
+  }
+  
+  
+  
+  
+  
+  label {
+    color: #F5831F;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  input, .form-select{
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #6a6767;
+    width: 100%;
+  }
+  
