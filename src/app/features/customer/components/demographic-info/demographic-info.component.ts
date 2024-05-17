@@ -94,7 +94,7 @@ export class DemographicInfoComponent implements OnInit {
 
     console.log(individualCustomer);
 
-     /*
+
 
      this.customerApiService.postCustomer(individualCustomer).subscribe({
       next: data => {
@@ -105,7 +105,7 @@ export class DemographicInfoComponent implements OnInit {
       }
     });
 
- */
+
 
     this.store.dispatch(setIndividualCustomer({ individualCustomer }));
     this.router.navigate(['/create/address-info']);
