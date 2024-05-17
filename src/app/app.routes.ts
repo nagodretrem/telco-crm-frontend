@@ -7,6 +7,10 @@ import { DemographicInfoComponent } from './features/customer/components/demogra
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { AddressInfoComponent } from './features/customer/components/address-info/address-info.component';
 import { AddressAddComponent } from './features/customer/components/add-address/address-add.component';
+import { TopMenuComponent } from './shared/layouts/top-menu/top-menu.component';
+import { CustomerInfoComponent } from './features/customer/components/customer-info/customer-info.component';
+import { CustomerInfoUpdateComponent } from './features/customer/components/customer-info-update/customer-info-update.component';
+import { ContactMediumComponent } from './features/customer/components/contact-medium/contact-medium.component';
 
 
 export const routes: Routes = [
@@ -81,11 +85,65 @@ export const routes: Routes = [
       },
     ],
   },
-
+  {
+    path: 'customer/id',
+    component: MainLayoutComponent,
+    children:[{
+      path:'',
+      pathMatch: 'full',
+      component: TopMenuComponent,
+      children:[
+        {
+          path:'',
+          pathMatch: 'full',
+          component: CustomerInfoComponent,
+        }
+      ]
+    }],    
+  },
+  {
+    path: 'customer/update',
+    component: MainLayoutComponent,
+    children:[{
+      path:'',
+      pathMatch: 'full',
+      component: TopMenuComponent,
+      children:[
+        {
+          path:'',
+          pathMatch: 'full',
+          component: CustomerInfoUpdateComponent,
+        }
+      ]
+    },]
+  },
+  {
+    path: 'create/add-contact-medium',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: CreateCustomerComponent,
+        children:[
+          {
+          path: '',
+          pathMatch: 'full',
+          component: ContactMediumComponent,
+          },
+      ]
+      },
+    ],
+  },  
   {
     path: 'login',
     component: LoginPageComponent,
   },
+  {
+    path: 'top-menu',
+    component: TopMenuComponent,
+  },
+
   {
     path: '**',
     redirectTo: 'not-found',

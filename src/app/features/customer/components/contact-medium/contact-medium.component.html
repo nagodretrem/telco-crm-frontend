@@ -1,0 +1,33 @@
+<form class="form" [formGroup]="form" (submit)="onFormSubmit()">
+    <h4 class="title">Contact Medium</h4>
+    <div class="etiya-demographic">
+      <div class="left-side">
+        <div class="inputs">
+          <label>Email</label>
+          <input type="text" formControlName="firstName" OnlyLetter/>
+        </div>
+        <div class="inputs">
+          <label>Mobile Phone*</label>
+          <input type="text" formControlName="lastName" OnlyNumber/>
+        </div>  
+        </div>
+
+  
+      <div class="right-side">
+        <div class="inputs">
+          <label>Home Phone</label>
+          <input type="text" formControlName="middleName" OnlyNumber/>
+        </div>
+        <div class="inputs">
+          <label>Fax</label>
+          <input type="date" formControlName="birthDate" OnlyNumber/>
+        </div>
+       </div>
+    </div>
+
+    <button class="previous-button">Previous</button>
+    <button class="create-button"  type="submit" [disabled]="!form.valid">Create</button>
+  
+  </form>
+  
+  

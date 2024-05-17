@@ -1,31 +1,29 @@
-import { CustomerApiService } from './../../services/customer-api.service';
-import { selectIndividualCustomer } from '../../../../shared/store/customers/indivudual-customer.selector';
-import { CreateCustomerRequest } from '../../models/requests/create-customer-request';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Validators } from '@angular/forms';
-import { setIndividualCustomer } from '../../../../shared/store/customers/indivudual-customer.action';
-import { Store, select } from '@ngrx/store';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { OnlyNumberDirective } from '../../../../core/directives/only-number.directive';
 import { OnlyLetterDirective } from '../../../../core/directives/only-letter.directive';
+import { CreateCustomerRequest } from '../../models/requests/create-customer-request';
+import { setIndividualCustomer } from '../../../../shared/store/customers/indivudual-customer.action';
+import { selectIndividualCustomer } from '../../../../shared/store/customers/indivudual-customer.selector';
+import { Store, select } from '@ngrx/store';
+import { CustomerApiService } from '../../services/customer-api.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'etiya-demographic-info',
+  selector: 'app-customer-info-update',
   standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
     OnlyNumberDirective,
-    OnlyLetterDirective
+    OnlyLetterDirective    
   ],
-  templateUrl: './demographic-info.component.html',
-  styleUrl: './demographic-info.component.scss',
+  templateUrl: './customer-info-update.component.html',
+  styleUrl: './customer-info-update.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DemographicInfoComponent implements OnInit {
-
+export class CustomerInfoUpdateComponent { 
   form: FormGroup;
 
 
@@ -94,7 +92,7 @@ export class DemographicInfoComponent implements OnInit {
 
     console.log(individualCustomer);
 
-
+     /*
 
      this.customerApiService.postCustomer(individualCustomer).subscribe({
       next: data => {
@@ -105,7 +103,7 @@ export class DemographicInfoComponent implements OnInit {
       }
     });
 
-
+ */
 
     this.store.dispatch(setIndividualCustomer({ individualCustomer }));
     this.router.navigate(['/create/address-info']);
@@ -119,9 +117,4 @@ export class DemographicInfoComponent implements OnInit {
     }
     this.createCustomer();
   }
-
-
-
-
- }
-
+}
