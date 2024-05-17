@@ -1,8 +1,8 @@
-<form [formGroup]="form" (submit)="onFormSubmit()" >
+<form [formGroup]="form" (submit)="onFormSubmit(username.value, password.value)" >
 
   <label for="username">Username: </label>
   <br />
-  <input id="username" type="text" placeholder="Enter Username" formControlName="username" />
+  <input id="username" type="text" #username placeholder="Enter Username" formControlName="username" />
   <div  *ngIf="form.controls['username'].invalid && (form.controls['username'].dirty || form.controls['username'].touched)"
 >
   <div class="error-message" *ngIf="form.controls['username'].errors">
@@ -13,7 +13,7 @@
 
 <label for="password">Password: </label>
 <br />
-<input id="password" type="{{showPassword ? 'text' : 'password'}}" placeholder="Enter Password" formControlName="password" />
+<input id="password" #password type="{{showPassword ? 'text' : 'password'}}" placeholder="Enter Password" formControlName="password" />
 <i class="{{showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'}}" (click)="toggleShowPassword()" style="margin-left: 10px; cursor: pointer;"></i>
 <div *ngIf="form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)"
 >

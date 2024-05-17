@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'etiya-login-form',
   standalone: true,
@@ -18,6 +18,11 @@ import { ButtonModule } from 'primeng/button';
 })
 export class LoginFormComponent {
   showPassword: boolean = false;
+  users = [
+    { username: 'user1', password: 'password1' },
+    { username: 'user2', password: 'password2' }
+  ];
+  errorMessage: string;
 
   form: FormGroup = this.fb.group({
     // Form Controls
@@ -35,16 +40,27 @@ export class LoginFormComponent {
   });
   constructor(
     private fb: FormBuilder,
+    private authService: AuthService,
     private router: Router
   ) {}
 
-  onFormSubmit() {
+  onFormSubmit(username: string, password: string) {
     if (this.form.invalid) {
       console.error('Form is invalid');
       return;
     }
-    this.router.navigate(['/search']);
-    this.submit();
+
+    const user = this.users.find(u => u.username === username && u.password === password);
+    if (this.authService.login(user.username, user.password)) {
+      
+      this.router.navigate(['/search']);
+      this.submit();
+    } else {
+      this.errorMessage = 'Invalid username or password';
+    }
+    
+  
+
   }
 
   submit(){
