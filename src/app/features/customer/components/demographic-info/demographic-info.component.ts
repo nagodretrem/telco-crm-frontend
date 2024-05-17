@@ -10,6 +10,7 @@ import { setIndividualCustomer } from '../../../../shared/store/customers/indivu
 import { Store, select } from '@ngrx/store';
 import { OnlyNumberDirective } from '../../../../core/directives/only-number.directive';
 import { OnlyLetterDirective } from '../../../../core/directives/only-letter.directive';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'etiya-demographic-info',
@@ -26,6 +27,7 @@ import { OnlyLetterDirective } from '../../../../core/directives/only-letter.dir
 })
 export class DemographicInfoComponent implements OnInit {
 
+  maxDate: string;
   form: FormGroup;
 
 
@@ -40,6 +42,7 @@ export class DemographicInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.createForm();
     this.store
     .pipe(select(selectIndividualCustomer))
@@ -48,6 +51,16 @@ export class DemographicInfoComponent implements OnInit {
         this.form.patchValue(individualCustomer);
       }
     });
+
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2); // months are 0-based in JS
+    const day = ('0' + date.getDate()).slice(-2);
+
+    this.maxDate = `${year - 18}-${month}-${day}`;
+
+
+
   }
 
 
@@ -70,13 +83,17 @@ export class DemographicInfoComponent implements OnInit {
   createForm() {
     this.form = this.fb.group({
       firstName: ['', Validators.required],
-      middleName: ['',],
+      middleName: [''],
       lastName: ['', Validators.required],
       gender: ['', Validators.required],
       motherName: ['',],
       fatherName: ['',],
-      birthDate: ['', Validators.required],
-      nationalityId: ['', Validators.required],
+      birthDate: ['', [Validators.required, ageValidator(18)]],
+      nationalityId: ['', [
+        Validators.required,
+        Validators.maxLength(11),
+        Validators.minLength(11),
+      ]],
     });
   }
 
@@ -125,3 +142,26 @@ export class DemographicInfoComponent implements OnInit {
 
  }
 
+ export function ageValidator(minAge: number): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (!control.value) {
+      return null;
+    }
+
+    const controlDate = new Date(control.value);
+    const today = new Date();
+
+    let age = today.getFullYear() - controlDate.getFullYear();
+
+    if (controlDate.getMonth() > today.getMonth() ||
+        (controlDate.getMonth() === today.getMonth() && controlDate.getDate() > today.getDate())) {
+      age--;
+    }
+
+    if (age < minAge) {
+      return { ageInvalid: true };
+    }
+
+    return null;
+  };
+}

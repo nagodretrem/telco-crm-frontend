@@ -17,7 +17,7 @@
 
 .form {
 
-  border: 2px solid #242441; 
+  border: 2px solid #242441;
   padding: 30px; /* İçerik ile border arasında boşluk */
   padding-bottom: 100px;
   margin: 20px; /* Formun dışındaki elementler ile arasında boşluk */
@@ -107,6 +107,26 @@
 
 
 form {
+  label {
+    color: #F5831F;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  input, .form-select{
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #6a6767;
+    width: 100%;
+
+  }
+
+  .error {
+    border: 2px solid red;
+  }
+
+
 
   .error-message{
     position: relative; /* Hata mesajını formun içinde konumlandırır */
@@ -114,6 +134,7 @@ form {
     font-size: 13px; /* Hata mesajı yazı boyutunu küçültür */
     font-weight: bold;
     color: red; /* Hata mesajı rengini kırmızı yapar */
+
   }
 
 }
@@ -122,15 +143,5 @@ form {
 
 
 
-label {
-  color: #F5831F;
-  font-weight: bold;
-  font-size: 14px;
-}
-input, .form-select{
-  margin-bottom: 20px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #6a6767;
-  width: 100%;
-}
+
+

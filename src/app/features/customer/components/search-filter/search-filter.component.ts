@@ -3,13 +3,17 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DataTransferService } from '../../services/data-transfer.service';
+import { OnlyLetterDirective } from '../../../../core/directives/only-letter.directive';
+import { OnlyNumberDirective } from '../../../../core/directives/only-number.directive';
 
 @Component({
   selector: 'etiya-search-filter',
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OnlyLetterDirective,
+    OnlyNumberDirective
   ],
   templateUrl: './search-filter.component.html',
   styleUrl: './search-filter.component.scss',

@@ -3,7 +3,7 @@
 <form [formGroup]="searchForm" (submit)="onSearch()">
   <div>
     <label for="idNumber">ID Number</label>
-    <input type="text" id="idNumber" formControlName="nationalityId">
+    <input type="text" id="idNumber" OnlyNumber formControlName="nationalityId">
   </div>
   <div>
     <label for="customerId">Customer ID</label>
@@ -15,15 +15,15 @@
   </div>
   <div>
     <label for="firstName">First Name</label>
-    <input type="text" id="firstName" formControlName="firstName">
+    <input type="text" id="firstName" OnlyLetter formControlName="firstName">
   </div>
   <div>
     <label for="secondName">Middle Name</label>
-    <input type="text" id="secondName" formControlName="middleName">
+    <input type="text" id="secondName" OnlyLetter formControlName="middleName">
   </div>
   <div>
     <label for="lastName">Last Name</label>
-    <input type="text" id="lastName" formControlName="lastName">
+    <input type="text" id="lastName" OnlyLetter formControlName="lastName">
   </div>
   <div>
     <label for="orderNumber">Order Number</label>
