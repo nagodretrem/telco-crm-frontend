@@ -1,14 +1,31 @@
 <div class="address-info">
   <h4 class="title">Address Info</h4>
-  <div class="add-new-address">
-      <button class="add-button" (click)="display=true">Add New Address</button>
+  <div class="address-list">
+    <div *ngFor="let address of addresses$ | async" class="address-card">
+      <p class="address-text">
+        House Number: {{ address.houseNumber }}, {{ address.street }}, {{ address.description }}, {{ address.cityName }}
+      </p>
+      <div class="card-actions" appClickOutside (clickOutside)="closeMenu(address)">
+        <button class="menu-button" (click)="toggleMenu(address)">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <div *ngIf="isMenuOpen(address)" class="action-buttons">
+          <button class="edit-button" (click)="editAddress(address)">Edit</button>
+          <button class="delete-button" (click)="confirmDeleteAddress(address)">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="add-new-address">
+      <button class="add-button" (click)="addNewAddress()">Add New Address</button>
+    </div>
   </div>
+
   <p-dialog header="Add Address" [(visible)]="display" [modal]="true" [style]="{width: '90vw'}" [baseZIndex]="10000">
-      <etiya-address-add (onClose)="onClose($event)"></etiya-address-add>
+    <etiya-address-add [address]="selectedAddress" (onClose)="onClose($event)"></etiya-address-add>
   </p-dialog>
 
-
-  <button class="previous-button">Previous</button>
-  <button class="next-button">Next</button>
-
+  <div class="button-container">
+    <button class="previous-button" (click)="previousButton()">Previous</button>
+    <button class="next-button" [disabled]="!hasAddresses" (click)="nextButton()">Next</button>
+  </div>
 </div>

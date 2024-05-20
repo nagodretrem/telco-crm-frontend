@@ -1,85 +1,129 @@
-import { selectCustomerAddress } from './../../../../shared/store/addresses/customer-address.selector';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DialogModule } from 'primeng/dialog';
-import { CreateAddressRequest } from '../../models/requests/create-address-request';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  Output,
+  OnDestroy,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { setCustomerAddress, setCustomerAddresses } from '../../../../shared/store/addresses/customer-address.action';
+import { setCustomerAddresses, updateCustomerAddress } from '../../../../shared/store/addresses/customer-address.action';
+import { CitiesService } from '../../services/cities.service';
+import { City } from '../../models/responses/cities-response';
+import { CreateAddressRequest } from '../../models/requests/create-address-request';
+import { Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'etiya-address-add',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    DialogModule
-  ],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './address-add.component.html',
-  styleUrl: './address-add.component.scss',
+  styleUrls: ['./address-add.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddressAddComponent implements OnInit{
+export class AddressAddComponent implements OnInit, OnChanges, OnDestroy  {
+  private unsubscribe$ = new Subject<void>();
+  addresses$: Observable<CreateAddressRequest[]>;
 
-  @Output() onClose = new EventEmitter();
-  createdAdresses: CreateAddressRequest[] = [];
+  cities: City[] = [];
   form: FormGroup;
 
+  @Input() address: CreateAddressRequest | null = null;
+  @Output() onClose = new EventEmitter();
+
   constructor(
-    private fb:FormBuilder,
-    private store: Store<{customerAddresses : CreateAddressRequest}>
-  ){}
+    private fb: FormBuilder,
+    private store: Store<{ customerAddress: { customerAddresses: CreateAddressRequest[] } }>,
+    private citiesService: CitiesService,
+    private change: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.createForm();
+    this.citiesService.getCities().subscribe((response) => {
+      this.cities = response.sort((a, b) => a.name.localeCompare(b.name));
+      this.change.detectChanges();
+    });
 
-
-
-
+    this.store.select(state => state.customerAddress.customerAddresses)
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(customerAddresses => {
+      console.log(customerAddresses);
+    });
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['address'] && this.form) {
+      if (this.address) {
+        this.form.patchValue(this.address);
+      } else {
+        this.form.reset(); // Yeni adres eklerken formu sıfırla
+      }
+    }
+  }
+
   createForm() {
-  this.form = this.fb.group({
-    cityId: ['', Validators.required],
-    houseFlatNumber:['', Validators.required],
-    addressDescription: ['', Validators.required],
-    street: ['', Validators.required],
-  });
-}
+    this.form = this.fb.group({
+      cityId: ['', Validators.required],
+      houseNumber: ['', Validators.required],
+      description: ['', Validators.required],
+      street: ['', Validators.required],
+    });
+  }
 
-createAddress() {
-  const customerAddress : CreateAddressRequest = {
-    customerId: "",
-    cityId: this.form.value.cityId,
-    houseFlatNumber: this.form.value.houseFlatNumber,
-    addressDescription: this.form.value.addressDescription,
-    street: this.form.value.street
-  };
-  this.createdAdresses = [...this.createdAdresses, customerAddress]; // Replace the array with a new one
-  this.store.dispatch(setCustomerAddress({customerAddress}))
-  this.store.dispatch(setCustomerAddresses({customerAddresses: this.createdAdresses}));
+  createAddress() {
+    const customerAddress: CreateAddressRequest = {
+      addressId: this.address ? this.address.addressId : this.generateUniqueId(),
+      customerId: this.address ? this.address.customerId : '', // customerId sonradan atanacak
+      cityId: this.form.value.cityId,
+      cityName: this.cities.find((city) => city.id === this.form.value.cityId)?.name,
+      houseNumber: this.form.value.houseNumber,
+      description: this.form.value.description,
+      street: this.form.value.street,
+    };
 
-  this.form.reset();
+    if (this.address) {
+      // Edit mode
+      this.store.dispatch(updateCustomerAddress({ customerAddress }));
+    } else {
+      // Create mode
+      this.store.dispatch(setCustomerAddresses({ customerAddresses: [customerAddress] }));
+    }
+    this.form.reset();
+  }
 
-  console.log(this.createdAdresses)
-  this.store.select(selectCustomerAddress).subscribe(value => {
-    console.log(value); // Log the value from the Observable
-  });
-}
+  generateUniqueId(): string {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  }
 
   onFormSubmit() {
-
-      if (this.form.invalid) {
-        console.error('Form is invalid');
-        return;
-      }
-
-      this.createAddress();
-
-      this.onClose.emit();
+    if (this.form.invalid) {
+      console.error('Form is invalid');
+      return;
     }
 
-    close() {
-      this.onClose.emit();
-    }
- }
+    this.createAddress();
+    this.onClose.emit();
+  }
 
+  close() {
+    this.onClose.emit();
+  }
+
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+}

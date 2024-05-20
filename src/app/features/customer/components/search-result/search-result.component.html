@@ -26,7 +26,9 @@
           <td>{{ customer.firstName }}</td>
           <td>{{ customer.middleName }}</td>
           <td>{{ customer.lastName }}</td>
-          <td>{{ customer.customerId }}</td>
+          <td>
+            <a [routerLink]="['/customer-info', customer.customerId]">{{ customer.customerId }}</a>
+          </td>
         </tr>
       </ng-template>
     </p-table>

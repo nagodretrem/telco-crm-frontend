@@ -1,33 +1,52 @@
 <form class="form" [formGroup]="form" (submit)="onFormSubmit()">
     <h4 class="title">Contact Medium</h4>
-    <div class="etiya-demographic">
+    <div class="etiya-contact-medium">
       <div class="left-side">
         <div class="inputs">
-          <label>Email</label>
-          <input type="text" formControlName="firstName" OnlyLetter/>
+          <label>Email*</label>
+          <input type="text" formControlName="email"
+          [ngClass]="{'error': form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)}"
+          />
+          <div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)">
+            <div class="error-message" *ngIf="form.controls['email'].errors?.['required']">
+              Please fill in the blank correctly!
+            </div>
+            <div class="error-message" *ngIf="form.controls['email'].errors?.['email']">
+              Email must be a valid email address!
+            </div>
+          </div>
         </div>
         <div class="inputs">
           <label>Mobile Phone*</label>
-          <input type="text" formControlName="lastName" OnlyNumber/>
-        </div>  
+          <input type="text" formControlName="mobilePhone" OnlyNumber
+          [ngClass]="{'error': form.controls['mobilePhone'].invalid && (form.controls['mobilePhone'].dirty || form.controls['mobilePhone'].touched)}"
+          />
+          <div *ngIf="form.controls['mobilePhone'].invalid && (form.controls['mobilePhone'].dirty || form.controls['mobilePhone'].touched)">
+            <div class="error-message" *ngIf="form.controls['mobilePhone'].errors?.['required']">
+              Please fill in the blank correctly!
+            </div>
+            <div class="error-message" *ngIf="form.controls['mobilePhone'].errors?.['phone']">
+              Mobile Phone must be a valid number!
+            </div>
+          </div>
+        </div>
         </div>
 
-  
+
       <div class="right-side">
         <div class="inputs">
           <label>Home Phone</label>
-          <input type="text" formControlName="middleName" OnlyNumber/>
+          <input type="text" formControlName="homePhone" OnlyNumber/>
         </div>
         <div class="inputs">
           <label>Fax</label>
-          <input type="date" formControlName="birthDate" OnlyNumber/>
+          <input type="text" formControlName="fax" OnlyNumber/>
         </div>
        </div>
     </div>
 
-    <button class="previous-button">Previous</button>
+    <button class="previous-button" (click)="previousButton()">Previous</button>
     <button class="create-button"  type="submit" [disabled]="!form.valid">Create</button>
-  
+
   </form>
-  
-  
+

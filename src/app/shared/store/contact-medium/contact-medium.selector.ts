@@ -5,5 +5,5 @@ const selectContactMediumState = createFeatureSelector<ContactMediumState>('cont
 
 export const selectContactMedium = createSelector(
   selectContactMediumState,
-  (state: ContactMediumState) => state.contactMedium
+  (state: ContactMediumState) => state ? state.contactMedium : undefined
 );

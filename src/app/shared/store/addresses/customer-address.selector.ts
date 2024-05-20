@@ -3,11 +3,11 @@ import { CustomerAddressState } from "./customer-address.state";
 
 
 
-const selectCustomerAddressState =
+const selectCustomerAddressesState =
   createFeatureSelector<CustomerAddressState>('customerAddress');
 
 
-  export const selectCustomerAddress = createSelector(
-  selectCustomerAddressState,
-  (state: CustomerAddressState) => ({customerAddress: state.customerAddress, customerAddresses: state.customerAddresses})
-);
+  export const selectCustomerAddresses = createSelector(
+    selectCustomerAddressesState,
+    (state: CustomerAddressState) => state.customerAddresses
+  );

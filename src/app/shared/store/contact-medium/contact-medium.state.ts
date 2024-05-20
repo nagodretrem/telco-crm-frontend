@@ -6,7 +6,7 @@ export interface ContactMediumState {
 
 export const initialContactMediumState: ContactMediumState = {
   contactMedium: {
-    customerId : null,
+    customerId: '',
     email: '',
     homePhone: '',
     mobilePhone: '',

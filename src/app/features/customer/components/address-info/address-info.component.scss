@@ -1,76 +1,130 @@
-.address-info{
-    border: 2px solid #242441; /* Örnek olarak koyu gri bir border */
-    padding: 30px; /* İçerik ile border arasında boşluk */
-    margin: 20px; /* Formun dışındaki elementler ile arasında boşluk */
-    position: relative; /* h4 pozisyonlandırması için referans */
-    background-color: #fff; /* Formun arka plan rengi */
+.address-info {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #242441;
+  padding: 30px;
+  margin: 20px;
+  position: relative;
+  background-color: #fff;
+  min-height: 70vh;
 
   .title {
     position: absolute;
-    top: -32px; /* h4'ü formun dışına taşı */
+    top: -32px;
     left: 20%;
-    transform: translateX(-50%); /* h4'ü tam ortaya al */
-    background-color: #fff; /* h4'ün arka planını formun arka planıyla aynı yap */
-    padding: 0 10px; /* Metnin etrafında boşluk */
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 0 10px;
   }
-  .next-button{
-    position: flex;
-    align-items: flex-end;
-    float: right;
-    margin-right: 20px;
-    left: 4%;
-    width: 80px;
+
+  .address-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex: 1;
+  }
+
+  .address-card {
     background-color: #242441;
     color: #F5831F;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    margin-top: 80px;
-    margin-bottom: 5px;
-    }
-  .previous-button{
-    position: flex;
-    align-items: flex-end;
-    margin-left: 20px;
-    right: 5%;
-    width: 80px;
-    background-color: #242441;
-    color: #F5831F;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    margin-top: 80px;
-    margin-bottom: 5px;
-  }    
-
-
-}
-  .add-new-address{   
-    background-color: #242441; 
-    border: 1px;
-    margin: 20px;
-    margin-top: 50px;
     padding: 20px;
-    height: 40vh;
-    min-height: 30vh;
-    min-width: 8vw;
-    width: 15vw;
+    margin: 10px;
+    height: 250px;
+    width: 200px;
+    position: relative;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .address-text {
+      margin: 0;
+      white-space: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      position: absolute; /* absolute konumlandırma */
+      top: 10px; /* Sağ üst köşeye yerleştirme */
+      right: 10px; /* Sağ üst köşeye yerleştirme */
+
+      .menu-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        padding: 10px; /* Buton boyutunu artırma */
+        font-size: 1.2em; /* İkon boyutunu artırma */
+      }
+
+      .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background-color: black;
+        padding: 5px;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        z-index: 10;
+
+        .edit-button, .delete-button {
+          border: none;
+          padding: 5px 10px;
+          cursor: pointer;
+          color: black;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+
+  .add-new-address {
     display: flex;
     justify-content: center;
     align-items: center;
-    .add-button{
-        position: flex;
-        justify-self: center;   
-        background-color: #F5831F;
-        color: black;
-        font-size: medium;
-        font-weight: bold;       
-        height: 40%;
-        width: 14vw;
-        border: none;
-        cursor: pointer;
-    }
-} 
+    background-color: #242441;
+    color: #F5831F;
+    width: 200px;
+    height: 250px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
 
+    .add-button {
+      background-color: #F5831F;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      color: black;
+      border-radius: 3px;
+    }
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 25px;
+  }
+
+  .next-button, .previous-button {
+    background-color: #242441;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 80px;
+  }
+
+  button:disabled {
+    background-color: grey;
+    color: white;
+  }
+}

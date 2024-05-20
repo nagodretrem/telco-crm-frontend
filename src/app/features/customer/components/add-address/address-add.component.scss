@@ -3,11 +3,11 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
-  
+
     @media (max-width: 1000px) {
       flex-direction: column;
       .left-side, .right-side{
-        margin: 0;  
+        margin: 0;
       }
     }
   }
@@ -18,6 +18,14 @@
     margin: 20px; /* Formun dışındaki elementler ile arasında boşluk */
     position: relative; /* h4 pozisyonlandırması için referans */
     background-color: #fff; /* Formun arka plan rengi */
+
+    .error-message{
+      position: relative; /* Hata mesajını formun içinde konumlandırır */
+      top: -20px; /* Hata mesajını yukarı doğru kaydırır */
+      font-weight: bold;
+      font-size: 13px; /* Hata mesajı yazı boyutunu küçültür */
+      color: red; /* Hata mesajı rengini kırmızı yapar */
+    }
 
   .cancel-button{
     position: flex;
@@ -90,7 +98,7 @@ label {
     border: 1px solid #6a6767;
     width: 100%;
   }
-  .inputs input[type="text"][formControlName="addressDescription"] {
+  .inputs input[type="text"][formControlName="description"] {
     width: 50vw;
     height: 20vh;
     min-width: 100%;

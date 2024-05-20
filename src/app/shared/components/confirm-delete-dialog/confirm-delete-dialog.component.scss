@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  text-align: center;
+}
+.dialog {
+
+  color: #242441;
+  background-color: #242441;
+  padding: 40px 20px;
+
+}
+
+.dialog-content {
+  color: #ffffff;
+  background-color: #242441;
+  padding: 40px 20px;
+  margin: 0 auto;
+  max-width: 500px; /* Centering the dialog */
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: #242441;
+  max-width: 500px; /* Matching content width */
+  margin: 0 auto; /* Centering the actions */
+}
+
+.dialog-button {
+  background-color: #ff8c00;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+  margin: 0 60px; /* Space between buttons */
+  min-width: 100px; /* Minimum width for buttons */
+}
+
+.dialog-button:hover {
+  background-color: #ffa500; /* Lighter orange on hover */
+}
+
+.no-button {
+  background-color: #ff8c00; /* Darker orange for NO button */
+}
+
+.yes-button {
+  background-color: #ffa500; /* Lighter orange for YES button */
+}

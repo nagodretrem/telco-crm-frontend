@@ -1,22 +1,21 @@
 .list-group {
-    padding: 0;
-    margin: 0;
-    margin-top: 3rem;
-    list-style-type: none; /* Remove default list styles */
-    display: flex;
-    justify-content: center;
-    
-  }
-  
-  .top-item {
-    margin-right: 0px; 
-    padding: 10px; 
-    border: 1px solid #ccc;
-    background-color: #D9D9D9;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .selected {
-    background-color: #F5831F; 
-  }
+  padding: 0;
+  margin: 0;
+  margin-top: 3rem;
+  list-style-type: none; /* Remove default list styles */
+  display: flex;
+  justify-content: center;
+}
+
+.top-item {
+  margin-right: 0px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #D9D9D9;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.selected {
+  background-color: #F5831F;
+}

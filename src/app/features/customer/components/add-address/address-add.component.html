@@ -5,25 +5,48 @@
         <div class="inputs">
           <label>City*</label>
           <select class="form-select" formControlName="cityId">
-            <option hidden></option>
-            <option value="1">Ankara</option> <!--bu seçenekleri dbden çekicez-->
-            <option value="2">Istanbul</option>
+            <option value="" disabled selected>Select City</option>
+            <option *ngFor="let item of cities" [value]="item.id">{{ item.name }}</option>
           </select>
+          <div *ngIf="form.controls['cityId'].invalid && (form.controls['cityId'].dirty || form.controls['cityId'].touched)">
+            <div class="error-message" *ngIf="form.controls['cityId'].errors?.['required']">
+              City is required.
+            </div>
+          </div>
         </div>
+
         <div class="inputs">
           <label>House / Flat Number*</label>
-          <input type="text" formControlName="houseFlatNumber"/>
+          <input type="text" formControlName="houseNumber"/>
+          <div  *ngIf="form.controls['houseNumber'].invalid && (form.controls['houseNumber'].dirty || form.controls['houseNumber'].touched)"
+          >
+            <div class="error-message" *ngIf="form.controls['houseNumber'].errors?.['required']">
+              House / Flat Number is required.
+            </div>
+          </div>
         </div>
         <div class="inputs">
           <label>Address Description*</label>
-          <input type="text" formControlName="addressDescription" />
+          <input type="text" formControlName="description" />
+          <div  *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)"
+          >
+            <div class="error-message" *ngIf="form.controls['description'].errors?.['required']">
+              Address Description is required.
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="right-side">
         <div class="inputs">
-          <label>Street</label>
+          <label>Street*</label>
           <input type="text" formControlName="street" />
+          <div  *ngIf="form.controls['street'].invalid && (form.controls['street'].dirty || form.controls['street'].touched)"
+          >
+            <div class="error-message" *ngIf="form.controls['street'].errors?.['required']">
+              Street is required.
+            </div>
+          </div>
         </div>
       </div>
     </div>

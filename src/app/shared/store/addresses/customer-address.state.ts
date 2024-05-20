@@ -7,11 +7,13 @@ export interface CustomerAddressState {
 
 export const initialCustomerAddressState: CustomerAddressState = {
   customerAddress: {
+    addressId: '',
     customerId : '',
     cityId: '',
-    houseFlatNumber: '',
+    cityName: '',
+    houseNumber: '',
     street: '',
-    addressDescription: ''
+    description: ''
   },
   customerAddresses: []
 };

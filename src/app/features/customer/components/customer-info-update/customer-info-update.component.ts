@@ -4,9 +4,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { OnlyNumberDirective } from '../../../../core/directives/only-number.directive';
 import { OnlyLetterDirective } from '../../../../core/directives/only-letter.directive';
 import { CreateCustomerRequest } from '../../models/requests/create-customer-request';
-import { setIndividualCustomer } from '../../../../shared/store/customers/indivudual-customer.action';
-import { selectIndividualCustomer } from '../../../../shared/store/customers/indivudual-customer.selector';
-import { Store, select } from '@ngrx/store';
 import { CustomerApiService } from '../../services/customer-api.service';
 import { Router } from '@angular/router';
 
@@ -17,13 +14,13 @@ import { Router } from '@angular/router';
     CommonModule,
     ReactiveFormsModule,
     OnlyNumberDirective,
-    OnlyLetterDirective    
+    OnlyLetterDirective
   ],
   templateUrl: './customer-info-update.component.html',
   styleUrl: './customer-info-update.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomerInfoUpdateComponent { 
+export class CustomerInfoUpdateComponent {
   form: FormGroup;
 
 
@@ -31,7 +28,6 @@ export class CustomerInfoUpdateComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private store: Store<{individualCustomer: CreateCustomerRequest}>,
     private customerApiService: CustomerApiService
 
   ) {
@@ -39,13 +35,7 @@ export class CustomerInfoUpdateComponent {
 
   ngOnInit() {
     this.createForm();
-    this.store
-    .pipe(select(selectIndividualCustomer))
-    .subscribe((individualCustomer) => {
-      if (individualCustomer) {
-        this.form.patchValue(individualCustomer);
-      }
-    });
+
   }
 
 
@@ -60,7 +50,6 @@ export class CustomerInfoUpdateComponent {
       birthDate: null,
       nationalityId: "",
     };
-    this.store.dispatch(setIndividualCustomer({ individualCustomer }));
     this.router.navigate(['/search']);
 
   }
@@ -105,7 +94,6 @@ export class CustomerInfoUpdateComponent {
 
  */
 
-    this.store.dispatch(setIndividualCustomer({ individualCustomer }));
     this.router.navigate(['/create/address-info']);
   }
 

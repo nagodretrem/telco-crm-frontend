@@ -1,19 +1,25 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialCustomerAddressState } from "./customer-address.state";
-import { setCustomerAddress, setCustomerAddresses } from "./customer-address.action";
-
-
+import { setCustomerAddress, setCustomerAddresses, deleteCustomerAddress, updateCustomerAddress } from "./customer-address.action";
 
 export const customerAddressReducer = createReducer(
   initialCustomerAddressState,
   on(setCustomerAddress, (state, { customerAddress }) => ({
     ...state,
-    customerAddress: {
-      ...customerAddress,
-    },
+    customerAddress
   })),
-  on(setCustomerAddresses, (state, {customerAddresses}) => ({
+  on(setCustomerAddresses, (state, { customerAddresses }) => ({
     ...state,
-    customerAddresses: [...customerAddresses],
+    customerAddresses: [...state.customerAddresses, ...customerAddresses],
+  })),
+  on(deleteCustomerAddress, (state, { addressId }) => ({
+    ...state,
+    customerAddresses: state.customerAddresses.filter(address => address.addressId !== addressId)
+  })),
+  on(updateCustomerAddress, (state, { customerAddress }) => ({
+    ...state,
+    customerAddresses: state.customerAddresses.map(address =>
+      address.addressId === customerAddress.addressId ? customerAddress : address
+    )
   }))
 );

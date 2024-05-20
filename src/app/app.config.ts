@@ -12,11 +12,13 @@ import { contactMediumReducer } from './shared/store/contact-medium/contact-medi
 import { errorInterceptor } from "./core/interceptors/error.interceptor";
 import { authInterceptor } from "./core/interceptors/auth.interceptor";
 import { customerAddressReducer } from './shared/store/addresses/customer-address.reducer';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withInterceptors([errorInterceptor, authInterceptor])),
+    provideHttpClient(withInterceptors([errorInterceptor, authInterceptor, loadingInterceptor])),
     provideBrowserAnimations(),
     provideStore(),
     provideState({
@@ -24,13 +26,13 @@ export const appConfig: ApplicationConfig = {
       reducer: individualCustomerReducer
     }),
     provideState({
-      name: 'contanctMedium',
+      name: 'contactMedium',
       reducer: contactMediumReducer
     }),
     provideState({
       name: 'customerAddress',
       reducer: customerAddressReducer
-    })
+    }), provideAnimationsAsync()
 ]
 };
 

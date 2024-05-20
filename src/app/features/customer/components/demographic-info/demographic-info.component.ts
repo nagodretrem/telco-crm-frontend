@@ -11,6 +11,8 @@ import { Store, select } from '@ngrx/store';
 import { OnlyNumberDirective } from '../../../../core/directives/only-number.directive';
 import { OnlyLetterDirective } from '../../../../core/directives/only-letter.directive';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AlertDialogComponent } from '../../../../shared/components/alert-dialog/alert-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'etiya-demographic-info',
@@ -19,7 +21,8 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     OnlyNumberDirective,
-    OnlyLetterDirective
+    OnlyLetterDirective,
+    AlertDialogComponent
   ],
   templateUrl: './demographic-info.component.html',
   styleUrl: './demographic-info.component.scss',
@@ -30,27 +33,23 @@ export class DemographicInfoComponent implements OnInit {
   maxDate: string;
   form: FormGroup;
 
-
-
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private store: Store<{individualCustomer: CreateCustomerRequest}>,
-    private customerApiService: CustomerApiService
-
-  ) {
-  }
+    private customerApiService: CustomerApiService,
+    private dialog: MatDialog // MatDialog servisini ekleyin
+  ) {}
 
   ngOnInit() {
-
     this.createForm();
     this.store
-    .pipe(select(selectIndividualCustomer))
-    .subscribe((individualCustomer) => {
-      if (individualCustomer) {
-        this.form.patchValue(individualCustomer);
-      }
-    });
+      .pipe(select(selectIndividualCustomer))
+      .subscribe((individualCustomer) => {
+        if (individualCustomer) {
+          this.form.patchValue(individualCustomer);
+        }
+      });
 
     const date = new Date();
     const year = date.getFullYear();
@@ -58,14 +57,10 @@ export class DemographicInfoComponent implements OnInit {
     const day = ('0' + date.getDate()).slice(-2);
 
     this.maxDate = `${year - 18}-${month}-${day}`;
-
-
-
   }
 
-
   cancelButtonClicked() {
-   const individualCustomer: CreateCustomerRequest = {
+    const individualCustomer: CreateCustomerRequest = {
       firstName: "",
       middleName: "",
       lastName: "",
@@ -77,7 +72,6 @@ export class DemographicInfoComponent implements OnInit {
     };
     this.store.dispatch(setIndividualCustomer({ individualCustomer }));
     this.router.navigate(['/search']);
-
   }
 
   createForm() {
@@ -86,8 +80,8 @@ export class DemographicInfoComponent implements OnInit {
       middleName: [''],
       lastName: ['', Validators.required],
       gender: ['', Validators.required],
-      motherName: ['',],
-      fatherName: ['',],
+      motherName: [''],
+      fatherName: [''],
       birthDate: ['', [Validators.required, ageValidator(18)]],
       nationalityId: ['', [
         Validators.required,
@@ -109,40 +103,62 @@ export class DemographicInfoComponent implements OnInit {
       nationalityId: this.form.value.nationalityId,
     };
 
-    console.log(individualCustomer);
-
-
-
-     this.customerApiService.postCustomer(individualCustomer).subscribe({
-      next: data => {
-        console.log('Success!', data);
-      },
-      error: error => {
-        console.error('There was an error!', error);
-      }
-    });
-
-
 
     this.store.dispatch(setIndividualCustomer({ individualCustomer }));
+    this.store.select(state => state.individualCustomer).subscribe((individualCustomer) => {
+      console.log(individualCustomer);
+    });
+
     this.router.navigate(['/create/address-info']);
+
   }
 
   onFormSubmit() {
-
     if (this.form.invalid) {
       console.error('Form is invalid');
       return;
     }
-    this.createCustomer();
+
+    const formValue = this.form.value;
+
+    this.customerApiService.checkNationalityIdExists(formValue.nationalityId).subscribe({
+      next: (exists) => {
+        if (exists) {
+          this.dialog.open(AlertDialogComponent, {
+            data: {
+              message: 'Customer already exists with this Nationality ID'
+            }
+          });
+        } else {
+          this.customerApiService.checkRealPerson({
+            firstName: formValue.firstName,
+            middleName: formValue.middleName,
+            lastName: formValue.lastName,
+            nationalityId: formValue.nationalityId,
+            birthYear: formValue.birthDate.split('-')[0]
+          }).subscribe({
+            next: (isReal) => {
+              if (!isReal) {
+                this.dialog.open(AlertDialogComponent, {
+                  data: {
+                    message: 'The information you entered does not belong to a real person.'
+                  }
+                });
+              } else {
+                this.createCustomer();
+              }
+            }
+          });
+        }
+      },
+      error: (err) => {
+        console.error('There was an error!', err);
+      }
+    });
   }
+}
 
-
-
-
- }
-
- export function ageValidator(minAge: number): ValidatorFn {
+export function ageValidator(minAge: number): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     if (!control.value) {
       return null;
@@ -158,10 +174,6 @@ export class DemographicInfoComponent implements OnInit {
       age--;
     }
 
-    if (age < minAge) {
-      return { ageInvalid: true };
-    }
-
-    return null;
+    return age < minAge ? { 'ageValidator': { value: control.value } } : null;
   };
 }

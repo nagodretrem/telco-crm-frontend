@@ -1,35 +1,35 @@
 <div class="top">
-    <div class="top-items">
-      <ul class="list-group">
-        <li
-          [routerLink]="['info']"
-          routerLinkActive="selected"
-          class="top-item"
-        >
-          Customer Info
-        </li>
-        <li
-          [routerLink]="['account']"
-          routerLinkActive="selected"
-          class="top-item"
-        >
-          Customer Account
-        </li>
-        <li
-          [routerLink]="['address']"
-          routerLinkActive="selected"
-          class="top-item"
-        >
-          Address
-        </li>
-        <li
-          [routerLink]="['contact-medium']"
-          routerLinkActive="selected"
-          class="top-item"
-        >
-          Contact Medium
-        </li>
-      </ul>
-    </div>
+  <div class="top-items">
+    <ul class="list-group">
+      <li
+        [routerLink]="['/customer-info', customerId]"
+        [ngClass]="{'selected': currentRoute === 'customer-info'}"
+        class="top-item"
+      >
+        Customer Info
+      </li>
+      <li
+
+        [ngClass]="{'selected': currentRoute === 'customer-account'}"
+        class="top-item"
+      >
+        Customer Account
+      </li>
+      <li
+        [routerLink]="['/address', customerId]"
+        [ngClass]="{'selected': currentRoute === 'address'}"
+        class="top-item"
+      >
+        Address
+      </li>
+      <li
+        [routerLink]="['/contact-medium', customerId]"
+        [ngClass]="{'selected': currentRoute === 'contact-medium'}"
+        class="top-item"
+      >
+        Contact Medium
+      </li>
+    </ul>
   </div>
-  <router-outlet></router-outlet>
+</div>
+<router-outlet></router-outlet>

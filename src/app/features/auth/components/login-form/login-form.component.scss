@@ -27,3 +27,10 @@ button.p-button {
   width: 30%; /* Butonun genişliğini artırır */
   font-size: 18px; /* Buton yazı boyutunu büyütür */
 }
+
+.invalid-error{
+  position: relative; /* Hata mesajını formun içinde konumlandırır */
+  top: -75px; /* Hata mesajını yukarı doğru kaydırır */
+  font-size: 13px; /* Hata mesajı yazı boyutunu küçültür */
+  color: red; /* Hata mesajı rengini kırmızı yapar */
+}

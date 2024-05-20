@@ -1,0 +1,45 @@
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70px;
+}
+
+.spinner .dot {
+  width: 18px;
+  height: 18px;
+  background-color: #3498db; /* Blue */
+  border-radius: 50%;
+  animation: dot-flashing 1s infinite linear alternate;
+}
+
+.spinner .dot:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.spinner .dot:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes dot-flashing {
+  0% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0.3;
+  }
+}

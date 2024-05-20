@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'etiya-login-form',
   standalone: true,
@@ -13,10 +14,10 @@ import { AuthService } from '../../services/auth.service';
     ButtonModule
   ],
   templateUrl: './login-form.component.html',
-  styleUrl: './login-form.component.scss',
+  styleUrls: ['./login-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
   showPassword: boolean = false;
   users = [
     { username: 'user1', password: 'password1' },
@@ -25,49 +26,50 @@ export class LoginFormComponent {
   errorMessage: string;
 
   form: FormGroup = this.fb.group({
-    // Form Controls
-    username:[
-      '',
-      [
-      Validators.required
-      ]
-
-    ],
-    password: [
-      '', // [0] : Başlangıç değeri
-      [Validators.required, Validators.minLength(6)], // [1] : Validasyonlar
-    ],
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {}
 
-  onFormSubmit(username: string, password: string) {
+  ngOnInit() {
+    this.form.valueChanges.subscribe(() => {
+      this.errorMessage = null;
+    });
+  }
+
+  onFormSubmit() {
     if (this.form.invalid) {
       console.error('Form is invalid');
       return;
     }
 
+    const username = this.form.get('username').value;
+    const password = this.form.get('password').value;
+
     const user = this.users.find(u => u.username === username && u.password === password);
-    if (this.authService.login(user.username, user.password)) {
-      
-      this.router.navigate(['/search']);
-      this.submit();
+
+    if (user) {
+      if (this.authService.login(user.username, user.password)) {
+        this.router.navigate(['/search']);
+        this.submit();
+      } else {
+        this.errorMessage = 'Invalid username or password';
+      }
     } else {
       this.errorMessage = 'Invalid username or password';
     }
-    
-  
-
   }
 
-  submit(){
-    console.log("submitted form:" + this.form.value);
+  submit() {
+    console.log("submitted form:", this.form.value);
   }
 
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
   }
- }
+}

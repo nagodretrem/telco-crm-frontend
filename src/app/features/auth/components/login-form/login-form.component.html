@@ -1,31 +1,32 @@
-<form [formGroup]="form" (submit)="onFormSubmit(username.value, password.value)" >
-
+<form [formGroup]="form" (submit)="onFormSubmit()">
   <label for="username">Username: </label>
   <br />
-  <input id="username" type="text" #username placeholder="Enter Username" formControlName="username" />
-  <div  *ngIf="form.controls['username'].invalid && (form.controls['username'].dirty || form.controls['username'].touched)"
->
-  <div class="error-message" *ngIf="form.controls['username'].errors">
-    Username is required.
+  <input id="username" type="text" placeholder="Enter Username" formControlName="username" />
+  <div *ngIf="form.controls['username'].invalid && (form.controls['username'].dirty || form.controls['username'].touched)">
+    <div class="error-message" *ngIf="form.controls['username'].errors">
+      Username is required.
+    </div>
   </div>
-</div>
-<br />
+  <br />
 
-<label for="password">Password: </label>
-<br />
-<input id="password" #password type="{{showPassword ? 'text' : 'password'}}" placeholder="Enter Password" formControlName="password" />
-<i class="{{showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'}}" (click)="toggleShowPassword()" style="margin-left: 10px; cursor: pointer;"></i>
-<div *ngIf="form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)"
->
-  <div class="error-message" *ngIf="form.controls['password'].errors?.['required']" >
-    Password is required.
+  <label for="password">Password: </label>
+  <br />
+  <input id="password" type="{{showPassword ? 'text' : 'password'}}" placeholder="Enter Password" formControlName="password" />
+  <i class="{{showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'}}" (click)="toggleShowPassword()" style="margin-left: 10px; cursor: pointer;"></i>
+  <div *ngIf="form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)">
+    <div class="error-message" *ngIf="form.controls['password'].errors?.['required']">
+      Password is required.
+    </div>
+    <div class="error-message" *ngIf="form.controls['password'].errors?.['minlength']">
+      Password must be at least 6 characters long.
+    </div>
   </div>
-  <div class="error-message" *ngIf="form.controls['password'].errors?.['minlength']">
-    Password must be at least 6 characters long.
-  </div>
-</div>
-<br />
-<br />
-  <button  pButton type="submit" label="Login" [disabled]="!form.valid"></button>
+  <br />
+  <br />
+  <button pButton type="submit" label="Login" [disabled]="!form.valid"></button>
 </form>
+
+<div *ngIf="errorMessage" class="invalid-error">
+  {{ errorMessage }}
+</div>
 
