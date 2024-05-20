@@ -103,7 +103,7 @@ export class ContactMediumComponent implements OnInit {
 
       console.log('Customer, addresses, and contact medium created successfully');
 
-      this.router.navigate([`/customer/${customerId}`]);
+      this.router.navigate([`/customer-info/${customerId}`]);
     } catch (error) {
       if (error instanceof HttpErrorResponse) {
         console.error('Backend returned validation error:', error.error);
