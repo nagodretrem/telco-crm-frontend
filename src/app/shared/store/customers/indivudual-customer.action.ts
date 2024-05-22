@@ -6,4 +6,4 @@ export const setIndividualCustomer = createAction(
   props<{ individualCustomer: CreateCustomerRequest }>()
 );
 
-export const clearState = createAction('[State] Clear');
+export const clearIndividualCustomer = createAction('[IndividualCustomer] Clear');

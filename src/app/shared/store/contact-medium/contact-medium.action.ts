@@ -5,3 +5,4 @@ export const setContactMedium = createAction(
   '[Contact Medium] set Contact Medium',
   props<{ contactMedium: CreateContactMediumRequest }>()
 );
+export const clearContactMedium = createAction('[ContactMedium] Clear');

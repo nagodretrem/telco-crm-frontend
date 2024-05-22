@@ -20,3 +20,5 @@ export const updateCustomerAddress = createAction(
   '[Customer Addresses] Update Customer Address',
   props<{ customerAddress: CreateAddressRequest }>()
 );
+
+export const clearCustomerAddresses = createAction('[CustomerAddresses] Clear');

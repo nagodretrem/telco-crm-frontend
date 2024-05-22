@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Validators } from '@angular/forms';
-import { setIndividualCustomer } from '../../../../shared/store/customers/indivudual-customer.action';
+import { clearIndividualCustomer, setIndividualCustomer } from '../../../../shared/store/customers/indivudual-customer.action';
 import { Store, select } from '@ngrx/store';
 import { OnlyNumberDirective } from '../../../../core/directives/only-number.directive';
 import { OnlyLetterDirective } from '../../../../core/directives/only-letter.directive';
@@ -60,17 +60,7 @@ export class DemographicInfoComponent implements OnInit {
   }
 
   cancelButtonClicked() {
-    const individualCustomer: CreateCustomerRequest = {
-      firstName: "",
-      middleName: "",
-      lastName: "",
-      gender: "",
-      motherName: "",
-      fatherName: "",
-      birthDate: null,
-      nationalityId: "",
-    };
-    this.store.dispatch(setIndividualCustomer({ individualCustomer }));
+    this.store.dispatch(clearIndividualCustomer());
     this.router.navigate(['/search']);
   }
 

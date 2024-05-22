@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialIndividualCustomerState } from "./indivudual-customer.state";
-import { setIndividualCustomer } from "./indivudual-customer.action";
+import { setIndividualCustomer, clearIndividualCustomer } from "./indivudual-customer.action";
 
 export const individualCustomerReducer = createReducer(
   initialIndividualCustomerState,
@@ -9,7 +9,12 @@ export const individualCustomerReducer = createReducer(
     individualCustomer: {
       ...individualCustomer,
     },
+  })),
+  on(clearIndividualCustomer, (state) => ({
+    ...state,
+    individualCustomer: null,
   }))
+
 );
 
 

@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialContactMediumState } from './contact-medium.state';
-import { setContactMedium } from './contact-medium.action';
+import { setContactMedium, clearContactMedium } from './contact-medium.action';
 
 export const contactMediumReducer = createReducer(
   initialContactMediumState,
@@ -9,5 +9,9 @@ export const contactMediumReducer = createReducer(
     contactMedium: {
       ...contactMedium,
     },
+  })),
+  on(clearContactMedium, (state) => ({
+    ...state,
+    contactMedium: null,
   }))
 );
