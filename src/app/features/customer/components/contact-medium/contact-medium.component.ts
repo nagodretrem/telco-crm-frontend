@@ -73,27 +73,24 @@ export class ContactMediumComponent implements OnInit {
 
   async createCustomer() {
     try {
-      // Step 1: Get individual customer data from the store
       const individualCustomer = await firstValueFrom(this.store.pipe(select(selectIndividualCustomer)));
 
       if (!individualCustomer) {
         throw new Error('No individual customer data found in the store');
       }
 
-      // Step 2: Post individual customer data to the backend and get the customerId
       const customerResponse = await firstValueFrom(this.customerApiService.postCustomer(individualCustomer));
       const customerId = customerResponse.id;
 
-      // Step 3: Get customer addresses from the store
       const customerAddresses = await firstValueFrom(this.store.pipe(select(selectCustomerAddresses)));
 
-      // Step 4: Update each address with customerId and post to the backend
+
       for (const address of customerAddresses) {
         const updatedAddress = { ...address, customerId };
         await firstValueFrom(this.customerApiService.postAddress(updatedAddress));
       }
 
-      // Step 5: Get contact medium data from the store
+
       const contactMedium = await firstValueFrom(this.store.pipe(select(selectContactMedium)));
 
       if (contactMedium) {

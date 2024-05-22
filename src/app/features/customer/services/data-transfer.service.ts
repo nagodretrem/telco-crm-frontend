@@ -7,7 +7,7 @@ import { SearchCustomerResponse } from '../models/responses/search-customer-resp
 })
 export class DataTransferService {
   private filterResult = new Subject<SearchCustomerResponse>();
-  private pageAndSize = new Subject<any>();
+  private params = new Subject<any>();
 
   constructor() { }
 
@@ -19,11 +19,11 @@ export class DataTransferService {
     return this.filterResult.asObservable();
   }
 
-  sendPageAndSize(data:any){
-    this.pageAndSize.next(data);
+  sendParams(data:any){
+    this.params.next(data);
   }
 
-  getPageAndSize(){
-    return this.pageAndSize.asObservable();
+  getParams(){
+    return this.params.asObservable();
   }
 }

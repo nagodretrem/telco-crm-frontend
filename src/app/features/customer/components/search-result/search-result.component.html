@@ -3,12 +3,14 @@
   <h4 class="title">Search Result</h4>
   <div class="card">
     <p-table
-      [value]="customers.content"
-      [paginator]="true"
-      [rows]="10"
-      [tableStyle]="{ 'min-width': '2rem' }"
-      [rowsPerPageOptions]="[1, 3, 5, 10]"
-      [totalRecords]="customers.totalElements"
+    [value]="customers?.content"
+    [paginator]="true"
+    [rows]="size"
+    [lazy]="true"
+    (onLazyLoad)="loadCustomers($event)"
+    [tableStyle]="{ 'min-width': '2rem' }"
+    [rowsPerPageOptions]="[1, 3, 5, 10]"
+    [totalRecords]="customers?.totalElements"
 
     >
       <ng-template pTemplate="header">

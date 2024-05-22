@@ -44,11 +44,13 @@ export class SearchFilterComponent {
     this.searchCustomerApiService.searchCustomer(this.searchForm.value).subscribe( {
       next: (data) => {
         this.dataService.sendFilterResult(data);
+        this.dataService.sendParams(this.searchForm.value);
       },
       error: (error) => {
         this.dataService.sendFilterResult(null);
       },
       complete: () => {
+
         console.log('complete');
       }
 
