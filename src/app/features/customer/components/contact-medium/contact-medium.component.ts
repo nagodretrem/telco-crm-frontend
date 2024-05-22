@@ -98,6 +98,7 @@ export class ContactMediumComponent implements OnInit {
         await firstValueFrom(this.customerApiService.postContactMedium(updatedContactMedium));
       }
 
+
       console.log('Customer, addresses, and contact medium created successfully');
 
       this.router.navigate([`/customer-info/${customerId}`]);
@@ -107,6 +108,7 @@ export class ContactMediumComponent implements OnInit {
       } else {
         console.error('Error creating customer data:', error);
       }
+      this.router.navigate([`/search`]);
     }
 
 
