@@ -27,7 +27,7 @@ import { clearCustomerAddresses } from '../../../../shared/store/addresses/custo
     OnlyNumberDirective
   ],
   templateUrl: './contact-medium.component.html',
-  styleUrls: ['./contact-medium.component.scss'], // Fixed property name
+  styleUrls: ['./contact-medium.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactMediumComponent implements OnInit {
@@ -36,7 +36,7 @@ export class ContactMediumComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private store: Store<any>, // Changed type to any to handle different states
+    private store: Store<any>,
     private customerApiService: CustomerApiService,
   ) {}
 
@@ -54,7 +54,7 @@ export class ContactMediumComponent implements OnInit {
   createForm() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      mobilePhone: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      mobilePhone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11), Validators.pattern('^(05|5)([0-9]{9})$')]],
       homePhone: ['', Validators.pattern('^[0-9]*$')],
       fax: ['', Validators.pattern('^[0-9]*$')],
     });

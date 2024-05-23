@@ -3,7 +3,7 @@
     <ul class="list-group">
       <li
         [routerLink]="['/customer-info', customerId]"
-        [ngClass]="{'selected': currentRoute === 'customer-info'}"
+        [ngClass]="{'selected': currentRoute === 'customer-info' || 'customer-info-update'}"
         class="top-item"
       >
         Customer Info

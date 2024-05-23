@@ -2,10 +2,11 @@
   <div class="customer-info-header">
     <h2 class="left-side">
       Customer Info
-      <img class="update-icon"  src="../../../../../assets/images/pen.png" />
+      <img class="update-icon" (click)="editCustomer()" src="../../../../../assets/images/pen.png" />
     </h2>
     <div class="right-side">
-      <button>Delete Customer</button>
+
+      <button class="delete-button" (click)="deleteCustomer()">Delete Customer</button>
     </div>
   </div>
 

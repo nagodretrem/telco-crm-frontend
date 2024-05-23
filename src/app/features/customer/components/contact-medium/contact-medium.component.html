@@ -18,14 +18,14 @@
         </div>
         <div class="inputs">
           <label>Mobile Phone*</label>
-          <input type="text" formControlName="mobilePhone" OnlyNumber
+          <input type="text" formControlName="mobilePhone" OnlyNumber maxlength="11"
           [ngClass]="{'error': form.controls['mobilePhone'].invalid && (form.controls['mobilePhone'].dirty || form.controls['mobilePhone'].touched)}"
           />
           <div *ngIf="form.controls['mobilePhone'].invalid && (form.controls['mobilePhone'].dirty || form.controls['mobilePhone'].touched)">
-            <div class="error-message" *ngIf="form.controls['mobilePhone'].errors?.['required']">
+            <div class="error-message" *ngIf="form.controls['mobilePhone'].errors?.['required']" >
               Please fill in the blank correctly!
             </div>
-            <div class="error-message" *ngIf="form.controls['mobilePhone'].errors?.['phone']">
+            <div class="error-message" *ngIf="form.controls['mobilePhone'].errors?.['pattern']   || form.controls['mobilePhone'].errors?.['minlength'] || form.controls['mobilePhone'].errors?.['maxlength'] ">
               Mobile Phone must be a valid number!
             </div>
           </div>

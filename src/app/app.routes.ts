@@ -9,7 +9,6 @@ import { AddressInfoComponent } from './features/customer/components/address-inf
 import { TopMenuComponent } from './shared/layouts/top-menu/top-menu.component';
 import { CustomerInfoComponent } from './features/customer/components/customer-info/customer-info.component';
 import { ContactMediumComponent } from './features/customer/components/contact-medium/contact-medium.component';
-import { AuthGuard } from './core/guards/auth.guard';
 import { CustomerInfoUpdateComponent } from './features/customer/components/customer-info-update/customer-info-update.component';
 
 
@@ -28,7 +27,6 @@ export const routes: Routes = [
         path: '',
         pathMatch: 'full',
         component: SearchCustomerComponent,
-        canActivate: [AuthGuard]
       },
     ],
    },

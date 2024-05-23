@@ -16,12 +16,3 @@ export interface Content {
   nationalityId: string
 }
 
-/* export interface Content {
-  nationalityId: string;
-  customerId: string;
-  accountNumber: string;
-  firstName: string;
-  secondName: string;
-  lastName: string;
-  orderNumber: string;
-} */

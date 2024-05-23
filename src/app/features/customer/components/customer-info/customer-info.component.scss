@@ -40,6 +40,7 @@
   height: 75%;
   width: 100%;
   justify-content: space-around;
+  margin-top: 2rem;
 }
 
 .customer-info-left,
@@ -48,24 +49,37 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 50%;
+  width: 45%;
 }
 
 .customer-info-item {
   display: flex;
   justify-content: space-between;
-  margin-top: 5rem;
-  width: 50%;
+  margin-top: 2rem;
+  padding: 1rem;
+  width: 80%;
+
 }
 
 .customer-info-item label {
-  width: 50%;
+  width: 45%;
   font-weight: bold;
+  color: #333;
 }
 
 .customer-info-item .info-value {
-  width: 50%;
+  width: 55%;
   font-weight: bold;
+  color: #222;
 }
 
 
+
+.delete-button{
+  background-color: gainsboro;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.902);
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid black;
+}

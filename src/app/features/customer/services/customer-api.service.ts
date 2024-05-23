@@ -29,6 +29,11 @@ export class CustomerApiService {
     return this.http.put<CreateCustomerResponse>(url, customer);
   }
 
+  deleteCustomer(customerId: string): Observable<any> {
+    const url = `${this.baseUrl}/individualCustomers/${customerId}`;
+    return this.http.delete<any>(url);
+  }
+
   checkNationalityIdExists(nationalityId: string): Observable<boolean> {
     const url = `${this.baseUrl}/individualCustomers/checkNationalityId/${nationalityId}`;
     return this.http.get<boolean>(url);
